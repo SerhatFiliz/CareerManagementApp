@@ -11,11 +11,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Mscc.GenerativeAI" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CareerManagementApp.DAL\CareerManagementApp.DAL.csproj" />
     <ProjectReference Include="..\CareerManagementApp.MODEL\CareerManagementApp.MODEL.csproj" />
+    <ProjectReference Include="..\CareerManagementApp.SERVICE\CareerManagementApp.SERVICE.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,16 @@
 using CareerManagementApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
+using Mscc.GenerativeAI;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var apiKey = "AIzaSyCZTwIgNQyjFQttuvVABFkLxHt-4nNHww8"; // API anahtarýnýzý buraya yerleþtirin
 builder.Services.AddDbContext<MyDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Mysql"), b => b.MigrationsAssembly("CareerManagementApp.WEB")));
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<GoogleAI>(new GoogleAI(apiKey)); // GoogleAI nesnesini singleton olarak ekleyin
+
 
 var app = builder.Build();
 

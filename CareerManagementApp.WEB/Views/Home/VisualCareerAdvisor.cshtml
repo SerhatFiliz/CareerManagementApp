@@ -1,0 +1,23 @@
+﻿<div class="col-9 content">
+    <h4>AI ile Kariyer Sohbeti İçin Mesajınızı Girin</h4>
+    <form id="messageForm" method="post" asp-action="VisualCareerAdvisor" asp-controller="Home">
+        <div class="mb-3 message-box">
+            <label for="userMessage" class="form-label">Mesaj:</label>
+            <textarea id="userMessage" name="UserMessage" class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </form>
+
+    <h4>Cevap</h4>
+    <div id="responseBox" class="response-box border p-3 mt-2 bg-light">
+        @if (ViewBag.ResponseText != null)
+        {
+            @Html.Raw(ViewBag.ResponseText)
+            // Yanıt burada gösterilecek
+        }
+        else
+        {
+            <p>Cevap burada görünecek...</p>
+        }
+    </div>
+</div>
