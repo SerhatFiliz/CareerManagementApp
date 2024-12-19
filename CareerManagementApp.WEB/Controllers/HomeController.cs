@@ -90,6 +90,7 @@ namespace CareerManagementApp.WEB.Controllers
             return View();
         }
 
+
     }
 
     public class MessageRequest

@@ -11,7 +11,7 @@
         .content {
             width: 100%;
             max-width: 1400px;
-            margin: 50px auto;
+            margin: 0 auto;
             padding: 30px;
             border-radius: 12px;
             background: #ffffff;
@@ -21,11 +21,15 @@
         .header-container {
             width: 100%;
             max-width: 1400px;
-            margin-bottom: 10px; /* Alt boşluğu daralt */
-            padding: 10px 20px; /* Yalnızca başlık için yeterli boşluk bırak */
+            padding: 10px 20px;
             background-color: #f8f9fa;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0; /* Boşluğu kaldırdık */
         }
 
             .header-container h2 {
@@ -98,13 +102,13 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
+    
         <div class="row flex-grow-1">
-            <div class="col-12 header-container">
+            <div class="col-12 header-container" style="margin-bottom: 0; padding-bottom: 0;">
                 <h2>Visual Career Advisor</h2>
             </div>
 
-            <div class="col-12 content">
+            <div class="col-12 content" style="margin-top: 0; padding-top: 10;">
                 <h4>AI ile Kariyer Sohbeti İçin Mesajınızı Girin</h4>
                 <form id="messageForm" method="post" asp-action="VisualCareerAdvisor" asp-controller="Home">
                     <div class="mb-3 message-box">
@@ -127,7 +131,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+ 
 
     <div class="toast-container">
         <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">

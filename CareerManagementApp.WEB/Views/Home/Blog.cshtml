@@ -1,7 +1,11 @@
 ﻿@model List<Blog>
 
 <div class="container mt-4">
-    <h1 class="mb-4 text-center blog-title">Blogs</h1>
+    <!-- Başlık Konteyneri -->
+    <div class="header-container">
+        <h1 class="mb-4 text-center blog-title">Blogs</h1>
+    </div>
+
     @if (Model != null && Model.Count > 0)
     {
         <div class="blog-grid">
@@ -25,7 +29,6 @@
         <span class="add-blog-icon">&#43;</span>
         <span class="add-blog-text">Add Blog</span>
     </div>  -->
-  
     <div class="add-blog-container" onclick="location.href='@Url.Action("AddBlog", "Home")'">
         <span class="add-blog-icon">&#43;</span>
         <span class="add-blog-text">Add Blog</span>
@@ -36,7 +39,7 @@
 <style>
     .blog-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
 
@@ -51,9 +54,9 @@
         transition: transform 0.3s ease;
     }
 
-    .blog-card:hover {
-        transform: scale(1.05);
-    }
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
 
     .blog-title {
         font-size: 3rem;
@@ -63,6 +66,15 @@
 
     .blog-content {
         color: #555;
+    }
+
+    .header-container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     .add-blog-container {
@@ -78,19 +90,19 @@
         font-weight: bold;
     }
 
-    .add-blog-container:hover {
-        background-color: #f8f9fa;
-    }
+        .add-blog-container:hover {
+            background-color: #f8f9fa;
+        }
 
     .add-blog-icon {
         font-size: 3rem;
         margin-right: 10px;
-        color: #000; 
+        color: #000;
     }
 
     .add-blog-text {
         font-size: 1.5rem;
-        color: #000; 
+        color: #000;
     }
 
     .row {

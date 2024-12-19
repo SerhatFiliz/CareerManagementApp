@@ -170,19 +170,20 @@
 
                 <div class="content-container">
                     <div class="section-header">Your Blogs and Drafts</div>
-                    <div class="blog-card">
+                    <div class="blog-card" data-id="1">
                         <h2 class="blog-title">The Future of AI in Job Market</h2>
                         <p class="blog-content">As artificial intelligence continues to evolve, its impact on the job market becomes increasingly significant...</p>
                         <span class="status-tag published">Published</span>
                         <a href="#" class="btn btn-danger" onclick="showToast(event, 'Blog deleted successfully', '/profile')">Delete</a>
+                        <a href="/Home/EditBlog/1" class="btn btn-warning">Edit</a> <!-- Edit button added here -->
                     </div>
 
-                    <div class="blog-card">
+                    <div class="blog-card" data-id="2">
                         <h2 class="blog-title">How to Transition into Tech Careers</h2>
                         <p class="blog-content">Transitioning into a tech career can be a rewarding experience. Here are some steps you can take to get started...</p>
                         <span class="status-tag draft">Draft</span>
                         <a href="#" class="btn btn-success" onclick="showToast(event, 'Draft published successfully', '/blogs')">Publish</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-warning">Edit</a> <!-- Edit button added here -->
                         <a href="#" class="btn btn-danger" onclick="showToast(event, 'Draft deleted successfully', '/profile')">Delete</a>
                     </div>
                 </div>
