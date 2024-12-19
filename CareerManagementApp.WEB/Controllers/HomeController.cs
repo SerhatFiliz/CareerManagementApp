@@ -85,6 +85,10 @@ namespace CareerManagementApp.WEB.Controllers
         {
             return View();
         }
+        public IActionResult AddBlog()
+        {
+            return View();
+        }
 
     }
 

@@ -17,12 +17,12 @@
         /* Header kısmı */
         .header {
             display: flex;
-            justify-content: space-between; /* Sol ve sağ arasındaki boşluğu eşit şekilde dağıt */
-            align-items: center; /* Yatayda ortalanmasını sağla */
+            justify-content: space-between;
+            align-items: center;
             padding: 10px;
             background: inherit;
             color: white;
-            position: relative; /* Profil simgesini en sağa konumlandırmak için */
+            position: relative;
         }
 
             .header h3 {
@@ -35,21 +35,21 @@
             font-size: 24px;
             color: white;
             cursor: pointer;
-            position: absolute; /* En sağda yer alması için absolute konumlandırma */
+            position: absolute;
             right: 10px;
             top: 10px;
             transition: color 0.3s ease;
         }
 
             .profile-icon:hover {
-                color: #feb47b; /* Hoverda renk değişikliği */
+                color: #feb47b;
             }
 
         .leftbar {
             background: inherit;
             color: white;
             padding: 15px;
-            width: 180px;
+            width: 540px;
             margin-right: 15px;
         }
 
@@ -59,15 +59,16 @@
             margin-bottom: 10px;
             color: white;
             background: linear-gradient(to right, #6a11cb 0%, #123C6f 50%, #6a11cb 100%);
-            border: none;
+            border: 1px solid #ddd; /* İnce çerçeve eklendi */
             padding: 10px;
             text-align: center;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
             .leftbar-btn:hover {
                 background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+                border-color: #feb47b; /* Hoverda çerçeve rengini değiştirdik */
             }
 
         .leftbar .active {
@@ -76,12 +77,13 @@
             border-left: 4px solid #feb47b;
         }
 
+        /* Footer kısmı */
         .footer {
             color: white;
             padding: 20px;
             text-align: center;
-            margin-top: auto;
             background: inherit;
+            margin-top: auto;
         }
 
             .footer p {
@@ -112,7 +114,7 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
         <div class="row">
             <!-- Header kısmı -->
             <div class="col-12 header">
