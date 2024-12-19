@@ -1,12 +1,10 @@
 using CareerManagementApp.DAL.Context;
 using CareerManagementApp.MODEL;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mscc.GenerativeAI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace CareerManagementApp.WEB.Controllers
 {
@@ -45,7 +43,7 @@ namespace CareerManagementApp.WEB.Controllers
         [HttpGet]
         public IActionResult VisualCareerAdvisor()
         {
-            return View(); // GET isteði için boþ bir view döndür
+            return View();
         }
 
         [HttpPost]
@@ -54,27 +52,31 @@ namespace CareerManagementApp.WEB.Controllers
             if (string.IsNullOrWhiteSpace(request.UserMessage))
             {
                 ModelState.AddModelError("UserMessage", "Mesaj boþ olamaz.");
-                return View(); // Hata durumunda ayný view'a geri dön
+                return View();
             }
-
-            var model = _googleAI.GenerativeModel(Model.GeminiPro); // Modeli seçin
+            request.UserMessage += ": NOT! Sen bir kariyer danýþmanlýðý uzmanýsýn. Rolün yalnýzca kariyerle ilgili sorularý yanýtlamak ve konuyla ilgisiz sorularý görmezden gelmek. Eðer gelen soru kariyerle ilgili deðilse, kibar bir þekilde þu yanýtý ver: \"Yalnýzca kariyerle ilgili sorularý yanýtlayabilirim.\" Kariyer planlama, iþ arama, beceri geliþtirme veya iþyeriyle ilgili konularda düþünceli, profesyonel ve uygulanabilir tavsiyeler sun. Yanýtlarýný her zaman kýsa ve kariyer konusuna uygun þekilde tut. Mesleklerle ilgili sorulara cevap verebilirsin ama kibar olmaya da özen göster kaba sorular gelirse cevaplama.";
+            var model = _googleAI.GenerativeModel(Model.GeminiPro);
             var response = await model.GenerateContent(request.UserMessage);
 
-            // Yanýtý ViewBag ile taþýyoruz
-            ViewBag.ResponseText = FormatResponse(response.Text);
-            return View(); // Yanýtý göstermek için ayný view'a dönüyoruz
-        }
 
-        // Yanýtý daha okunabilir bir formatta düzenleyen yardýmcý metot
+            ViewBag.ResponseText = FormatResponse(response.Text);
+
+            AIChat chat = new AIChat();
+            chat.UserID = new Guid();
+            chat.Message = request.UserMessage;
+            chat.AIResponse = response.Text;
+            context.AIChats.Add(chat);
+            context.SaveChanges();
+            return View(); 
+        }
         private string FormatResponse(string? responseText)
         {
-            // Yanýt metnindeki özel karakterleri ve biçimlendirmeleri düzenleyin
             var formattedText = responseText
-                .Replace("**", "") // Kalýn yazýyý kaldýr
-                .Replace("\n", "<li>") // Yeni satýrlarý liste öðesi yap
-                .Replace("* ", "<li>") // Yýldýzlarý liste öðesi yap
-                .Insert(0, "<ul>") // Liste baþlangýcý
-                .Insert(responseText.Split('\n').Length, "</ul>"); // Liste sonu
+                .Replace("**", "")
+                .Replace("\n", "")
+                .Replace("* ", "")
+                .Insert(0, "") 
+                .Insert(responseText.Split('\n').Length, "</ul>"); 
 
             return formattedText;
         }
@@ -83,6 +85,6 @@ namespace CareerManagementApp.WEB.Controllers
 
     public class MessageRequest
     {
-        public string UserMessage { get; set; } // Özellik adýný deðiþtirdik
+        public string UserMessage { get; set; }
     }
 }
