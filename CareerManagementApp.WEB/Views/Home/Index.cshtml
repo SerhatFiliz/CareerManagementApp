@@ -1,26 +1,43 @@
 ﻿@model List<Blog>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Main Page";
 }
 
-<h2 class="mt-3">Welcome to CareerBuilder</h2>
-<p>Explore the latest blogs, tools, and resources to build your dream career.</p>
+<section class="hero-section fade-in text-center py-5" style="background: linear-gradient(to right, #d8b9f5 0%, #88e1f2 50%,#4facfe 100%); color: white; border-radius: 15px;">
+    <h1 class="display-4">Start Building Your Future Today</h1>
+    <p class="lead">Discover career tips, blog posts, and resources to help you grow professionally.</p>
+    <a href="/Account/Login" class="cta-button">Get Started</a>
+</section>
 
-<h3>Latest Blogs</h3>
-@foreach (var blog in Model)
-{
-<div class="row">
-    <!-- Blog Card 1 -->
-    <div class="col-md-6">
-        <div class="blog-card">
-            <img src="https://via.placeholder.com/400x150" alt="Blog 1" class="img-fluid">
-            <div class="blog-card-body">
-                <h5 class="blog-card-title">@blog.Title</h5>
-                    <p class="blog-card-text">@blog.Content.Substring(0, Math.Min(100, blog.Content.Length))...</p>
-                    <a asp-controller="Home" asp-action="BlogContent" asp-route-id="@blog.ID" class="btn btn-primary">Devamını Oku</a>
+<section class="quote-section fade-in text-center my-5 p-5" style="background: linear-gradient(to right, #d8b9f5 0%, #88e1f2 50%,#4facfe 100%); border-radius: 15px;">
+    <blockquote class="blockquote" style="font-size: 2.5rem; font-weight: bold; color: white; text-align: center;">
+        "The only way to do great work is to love what you do."
+    </blockquote>
+    <footer class="blockquote-footer" style="font-size: 1.5rem; font-weight: bold; color: #4facfe;">
+        Steve Jobs
+    </footer>
+</section>
+
+<section class="container fade-in my-5">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; font-size: 2.5rem; color: #4facfe;">Career Tips</h2>
+        <p style="font-size: 1.2rem; color: #6a11cb;">Explore our curated tips to guide you in your professional journey.</p>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="card rounded-circle shadow-lg" style="background: linear-gradient(to bottom right, #6a11cb 0%, #2575fc 100%); padding: 30px; border: none;">
+                    <div class="card-body text-center text-white">
+                        <h5 class="card-title" style="font-weight: bold; font-size: 1.5rem;">@item.Title</h5>
+                        <p class="card-text">@item.Content.Substring(0, Math.Min(100, item.Content.Length))...</p>
+                        <!-- Buton yönlendirmesini ASP.NET MVC kullanarak düzenledik -->
+                        <a asp-controller="Home" asp-action="BlogContent" asp-route-id="@item.ID" class="btn btn-light">Read More</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>  
-}
+    }
+
+</section>

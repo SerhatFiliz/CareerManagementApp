@@ -79,6 +79,11 @@ namespace CareerManagementApp.WEB.Controllers
             return formattedText;
         }
 
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
     }
 
     public class MessageRequest
