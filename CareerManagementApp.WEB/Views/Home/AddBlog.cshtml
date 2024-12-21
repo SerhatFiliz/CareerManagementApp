@@ -46,7 +46,7 @@
                 <div class="add-blog-container">
                     <h2 class="add-blog-header">Add a New Blog</h2>
 
-                    <form method="post" action="/blogs/add" id="blogForm">
+                    <form method="post" asp-action="AddBlog" asp-controller="Home" id="blogForm">
                         <div class="mb-3">
                             <label for="Title" class="form-label">Blog Title</label>
                             <input type="text" class="form-control" id="Title" name="Title" required placeholder="Enter your blog title">
@@ -61,6 +61,7 @@
                             <button type="submit" name="action" value="Publish" class="btn btn-primary" onclick="showToast('Blog published successfully', '/blogs')">Publish</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

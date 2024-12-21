@@ -14,6 +14,8 @@ namespace CareerManagementApp.MODEL
         public Guid ID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string Status { get; set; }
+
         public Guid UserID { get; set; }
         public User User { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -93,6 +93,23 @@
             padding: 20px;
         }
 
+        .profile-link {
+            display: flex;
+            align-items: center; /* Dikey hizalamayı ortalar */
+            text-decoration: none; /* İsterseniz bağlantının alt çizgisini kaldırır */
+        }
+
+        .profile-name {
+            margin: 0; /* Fazla boşlukları kaldırır */
+            padding-right: 28px; /* İsim ile simge arasında boşluk oluşturur */
+            color: aquamarine; /* Metin rengini bağlantının rengiyle aynı yapar */
+        }
+
+        .profile-icon {
+            font-size: 1.5em; /* Simge boyutunu ayarlar */
+        }
+
+
         .cta-button {
             background: inherit;
             color: white;
@@ -115,7 +132,16 @@
         <div class="row">
             <div class="col-12 header">
                 <h3>CareerBuilder</h3>
-                <a asp-action="Profile" asp-controller="Home"><i class="bi bi-person-circle profile-icon"></i></a>
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Profile" asp-controller="Home" class="profile-link">
+                        <p class="profile-name">@User.Identity.Name</p>
+                        <i class="bi bi-person-circle profile-icon"></i>
+                    </a>
+                }
+                else{
+                    <a asp-action="Login" asp-controller="Home"><i class="bi bi-person-circle profile-icon"></i></a>
+                }
             </div>
         </div>
         <div class="row flex-grow-1">
@@ -123,6 +149,10 @@
                 <a asp-action="index" asp-controller="Home" class="btn btn-secondary leftbar-btn">Home</a>
                 <a asp-action="blog" asp-controller="Home" class="btn btn-secondary leftbar-btn @((ViewData["ActivePage"] as string) == "Blog" ? "active" : "")">Blogs</a>
                 <a asp-action="VisualCareerAdvisor" asp-controller="Home" class="btn btn-secondary leftbar-btn">Visual Career Advisor</a>
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="LogOut" asp-controller="Home" class="btn btn-secondary leftbar-btn">LogOut</a>
+                }
             </div>
             <div class="col-9 content">
                 @RenderBody()

@@ -61,8 +61,8 @@
                 <div class="blog-container">
                     <h1 class="blog-title">@Model.Title</h1>
                     <p class="blog-meta">
-                        <span>Yazar: @Model.User?.Email</span> |
-                        <span>Tarih: @DateTime.Now.ToString("dd MMMM yyyy")</span>
+                        <span>Yazar: @Model.User?.Name</span> |
+                        <span>Tarih: @Model.CreatedDate</span>
                     </p>
                     <div class="blog-content">
                         @Html.Raw(Model.Content)

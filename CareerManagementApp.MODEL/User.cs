@@ -7,6 +7,7 @@ namespace CareerManagementApp.MODEL
         [Key]
         public Guid ID { get; set; }
         [EmailAddress]
+        public string Name { get; set; }
         public string Email { get; set; }
         public Guid RoleID { get; set; }
 
